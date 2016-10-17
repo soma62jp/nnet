@@ -197,6 +197,7 @@ void nnet::train()
 	double verror;
 	unsigned long gen;
 	int i,j,ip;
+	const double delta_err = 10e-7;
 
 #if 1
 	// 状態表示
@@ -242,7 +243,7 @@ void nnet::train()
 				// https://github.com/tiny-dnn/tiny-dnn/wiki/%E5%AE%9F%E8%A3%85%E3%83%8E%E3%83%BC%E3%83%88
 				//verror+=pow((Ti[i][j] - Oi[j]) ,2.0) * 0.5;   // 二乗誤差
 				//verror+= -Ti[i][j] * std::log(Oi[j]) - (1.0 - Ti[i][j]) * std::log(1.0 - Oi[j]);	// 交差エントロピー
-				verror+= -Ti[i][j] * std::log(Oi[j]); 												// 交差エントロピー（マルチクラス）
+				verror+= -Ti[i][j] * std::log(Oi[j] + delta_err); 												// 交差エントロピー（マルチクラス）
 				// --
 			}
 		}
