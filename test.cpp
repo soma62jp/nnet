@@ -391,7 +391,7 @@ void nnet::outlog(std::string str)
 int main()
 {
   int i;
-  int input[150][4];
+  double input[150][4];
 
   nnet net(4,4,3,150);
 
